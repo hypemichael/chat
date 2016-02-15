@@ -6,7 +6,10 @@
   "contributors": [],
   "main": "server.js",
   "keywords": [],
-  "dependencies": {},
+  "dependencies": {
+    "socket.io": "~0.9.6",
+    "mime": "~1.2.7"
+  },
   "noAnalyze": true,
   "engines": {
     "node": ">=0.6"
