@@ -2,6 +2,7 @@ var http = require("http");
 var fs= require("fs");
 var url = require("url");
 var path = require("path");
+var port = process.env.PORT || 3000;
 
 var server = http.createServer(function(req,res){
 	var root = __dirname;
@@ -11,7 +12,7 @@ var server = http.createServer(function(req,res){
 readfile.pipe(res);
 });
 
-server.listen(8080);
+server.listen(port);
 
 var chatserver = require('./socketserver.js');
 chatserver.listen(server);
