@@ -2,7 +2,7 @@ var http = require("http");
 var fs= require("fs");
 var url = require("url");
 var path = require("path");
-var page = "./htmlpage.html";
+var page = "htmlpage.html";
 var port = process.env.PORT || 3000;
 
 var server = http.createServer(function(req,res){
