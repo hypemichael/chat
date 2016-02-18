@@ -1,4 +1,3 @@
-
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -72,8 +71,10 @@ border-left-color: GainsBoro;
 position:relative;
 -webkit-animation: moveUp 1s;
 -webkit-animation-fill-mode:forwards;
-width:50px;
+width:90%;
+word-wrap:break-word;
 }
+
 @-webkit-keyframes moveUp{
 from{top:0px;}
 to{bottom:30px;}
@@ -101,6 +102,12 @@ float:left;
 margin-top:10px;
 }
 
+#between{
+width:3%;
+float:left;
+height:60%;
+}
+
 #sendbutton{
 width:24%;
 height:60%;
@@ -109,7 +116,7 @@ float:left;
 background: -webkit-linear-gradient(LightBlue,MediumBlue);
 outline:none;
 border-color:none ;
-margin-left:26px;
+
 margin-top:20px;
 color:white;
 font-size:25px;
@@ -134,7 +141,7 @@ float:left;
 
 <div class="span2"></div><div id="sendmessage">
 <div class="buttondiv"><button>Text</button><button>Color</button><button>Emoji</button></div>
-<textarea id="textarea"> </textarea>
+<textarea id="textarea"> </textarea><div id="between"></div>
 <button id="sendbutton" onclick="sendText()">Send</button>
 </div>
 
@@ -160,13 +167,16 @@ document.getElementById("chatarea").scrollTop+=300;
 function sendText(){
 var val =document.getElementById("textarea").value;
 var data = val;
+
 socket.emit("data",data);
-var para = document.createElement("P");
+var para = document.createElement("p");
 para.appendChild(document.createTextNode("You" + ":" + data));
 para.className = "ani";
+
 document.getElementById("chatarea").appendChild(para);
 document.getElementById("textarea").value = "";
 para.style.color = "blue";
+
 document.getElementById("chatarea").scrollTop+=300;
 }
 
