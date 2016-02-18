@@ -3,73 +3,172 @@
 <head>
 <script src='/socket.io/socket.io.js' type='text/javascript'></script>
 <style>
-#info{
-background-color:Aqua;
-display: inline-block;
-width:30%;
-height:100%;
-position:absolute;
+* {
+    box-sizing: border-box;
 }
 
-#chat{
-display:inline-block;
-background-color:DodgerBlue;
+body{
+background:-webkit-linear-gradient(left top,blue, aqua,azure);
+}
+.span1{
+width:15%;
+float:left;
+height:15%;
+}
+
+.span2{
+width:15.01%;
+float:left;
+height:15%;
+}
+
+#header{
+background: -webkit-linear-gradient(GainsBoro,white,GainsBoro);
+width:70%;
+height:15%;
+font-size:80px;
+float:left;
+border-top-left-radius:10px;
+border-top-right-radius:10px;
+}
+
+#imagespan{
+font-size:30px;
+color:red;
+margin-top:5px;
+margin-left:5px;
+}
+#info{
+background-color:GainsBoro;
+width:20%;
+height:60%;
+float:left;
+}
+
+#date{
+font-size:15px;
+color:red;
+}
+#users{
+width:80%;
 height:100%;
-width:60%;
-position:absolute;
-left:300px;
+background-color:white;
+margin-left:25px;
+}
+#chatarea{
+width:50%;
+background-color:white;
+height:60%;
+float:left;
+font-size:30px;
+overflow-x :hidden;
+overflow-y :scroll;
+border-left-style:solid;
+border-left-color: GainsBoro;
+}
+
+.ani{
+position:relative;
+-webkit-animation: moveUp 1s;
+-webkit-animation-fill-mode:forwards;
+}
+@-webkit-keyframes moveUp{
+from{top:0px;}
+to{bottom:30px;}
 }
 
 
 #sendmessage{
-width:40%;
-height:10%;
-outline-color:blue;
-background-color:LightBlue;
-position: absolute;
-bottom:10px;
-left:200px;
+width:70%;
+height:20%;
+outline-color:;
+background: -webkit-linear-gradient(GainsBoro,white,GainsBoro);
+float:left;
+font-size:25px;
+padding:15px;
+border-bottom-left-radius:10px;
+border-bottom-right-radius:10px;
 }
 
-#span{
-position:absolute;
-left:100px;
+textarea{
+width:72%;
+height:80%;
+resize:none;
+font-size:25px;
+float:left;
+margin-top:10px;
 }
 
-#subm{
-bottom:-90%;
-position:relative;
-right:-70%;
+#sendbutton{
+width:24%;
+height:60%;
+padding:15px;
+float:left;
+background: -webkit-linear-gradient(LightBlue,MediumBlue);
+outline:none;
+border-color:none ;
+margin-left:26px;
+margin-top:20px;
+color:white;
+font-size:25px;
 }
+
+.buttondiv{
+width:100%;
+float:left;
+}
+
 </style>
 </head>
 <body>
-<div id="info">Profile
+<div class="span1"></div>
+<div id="header"><img id="imagespan" width="80px" height="80px" alt="image" src="/simple.png"></div>
+<div class="span1"></div>
+
+<div class="span1"></div>
+<div id="chatarea"><span id="date"></span></div>
+<div id="info"><div id="users">Online <span id="number"></span></div></div>
+<div class="span1"></div>
+
+<div class="span2"></div><div id="sendmessage">
+<div class="buttondiv"><button>Text</button><button>Color</button><button>Emoji</button></div>
+<textarea id="textarea"> </textarea>
+<button id="sendbutton" onclick="sendText()">Send</button>
 </div>
-<div id="chat">Chat Area
-<span id="chatarea"></span>
-<input id="sendmessage" type="text">
-<button id="subm" onclick="sendText()">Enter</button>
-</div>
+
 <script>
 var socket = io.connect();
 
+document.getElementById("date").innerHTML = new Date();
 
-socket.on("data",function(data){
+socket.on("users",function(data){
+document.getElementById("number").innerHTML = data + " " + "Users in Lobby";
+})
+
+socket.on("data",function(data,Guest){
 var para = document.createElement("p");
-para.appendChild(document.createTextNode(data));
+para.appendChild(document.createTextNode("Guest"+Guest + ":" +data));
 document.getElementById("chatarea").appendChild(para);
+para.className = "ani";
+para.style.color = "red";
+document.getElementById("chatarea").scrollTop+=300;
 })
 
 
 function sendText(){
-var val =document.getElementById("sendmessage").value;
+var val =document.getElementById("textarea").value;
 var data = val;
 socket.emit("data",data);
-var para = document.createElement("p");
-para.appendChild(document.createTextNode(data));
+var para = document.createElement("P");
+para.appendChild(document.createTextNode("You" + ":" + data));
+para.className = "ani";
 document.getElementById("chatarea").appendChild(para);
-document.getElementById("sendmessage").value = "";
+document.getElementById("textarea").value = "";
+para.style.color = "blue";
+document.getElementById("chatarea").scrollTop+=300;
 }
+
+
 </script>
 </body>
+</html>
