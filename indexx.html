@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.4.0/css/font-awesome.min.css">
+<style>
+* {
+    box-sizing: border-box;
+}
+body,html{
+height:100%;
+}
+.header {
+    border: 1px solid #66ffcc;
+    padding: 15px;
+	height:10%;
+	background-color: #66ffcc;
+}
+
+#header-text{
+position:absolute;
+top:0px;
+}
+.row:after {
+    content: "";
+    clear: both;
+    display: block;
+}
+[class*="col-"] {
+    float: left;
+    padding: 15px;
+    border: 1px solid #66ffcc;
+}
+.col-1 {width: 8.33%;}
+.col-2 {width: 16.66%;}
+.col-3 {width: 25%;}
+.col-4 {width: 33.33%;}
+.col-5 {width: 41.66%;}
+.col-6 {width: 50%;}
+.col-7 {width: 58.33%;}
+.col-8 {width: 66.66%;}
+.col-9 {width: 75%;}
+.col-10 {width: 83.33%;}
+.col-11 {width: 91.66%;}
+.col-12 {width: 100%;}
+
+#message{
+height:70%;
+}
+#message-div{
+height:100%;
+border-top-style : none;
+}
+#input-space{
+height:20%;
+}
+
+#input-space-div{
+height:100%;
+border-top-style : none;
+}
+
+.fa{
+color : #FFCC33;
+font-size:20px;
+padding-left: 15px;
+padding-top:0px;
+} 
+
+textarea{
+width: 90%;
+outline:none;
+border-style:none;
+resize:none;
+}
+
+.fa-paper-plane{
+float :right;
+color : green;
+}
+</style>
+</head>
+<body>
+<div class="header">
+<p id="header-text"> Simple Chat powered by Michael O.A</p>
+</div>
+
+<div class="row" id="message">
+<div class="col-12" id="message-div">
+</div>
+</div>
+
+<div class="row" id="input-space">
+<div class ="col-12" id="input-space-div">
+<i class ="fa fa-heart"></i> <i class="fa fa-frown-o"></i> <i class= "fa fa-smile-o"></i> <i class= "fa fa-meh-o"></i> <i class= "fa fa-thumbs-o-up"></i><br>
+<textarea></textarea><i class ="fa fa-paper-plane"></i>
+</div>
+</div>
+
+</body>
+</html>
