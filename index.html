@@ -71,7 +71,8 @@ padding-top:0px;
 textarea{
 width: 90%;
 outline:none;
-border-style:none;
+border-width: 0.50px;
+border-style:solid;
 resize:none;
 }
 
@@ -83,7 +84,7 @@ color : green;
 </head>
 <body>
 <div class="header">
-<p id="header-text"> Simple Chat powered by Michael O.A</p> &nbsp; Today<span id="date"> </span> &nbsp; <span id="number"></span>
+<p id="header-text"> Simple Chat powered by Michael O.A</p> <p id="number"></p> <p id="date"></p>
 </div>
 
 <div class="row" id="message">
@@ -94,7 +95,7 @@ color : green;
 <div class="row" id="input-space">
 <div class ="col-12" id="input-space-div">
 <i class ="fa fa-heart"></i> <i class="fa fa-frown-o"></i> <i class= "fa fa-smile-o"></i> <i class= "fa fa-meh-o"></i> <i class= "fa fa-thumbs-o-up"></i><br>
-<textarea id="textarea"></textarea><p class ="fa fa-paper-plane" onclick="sendText()">Send</p>
+<textarea id="textarea"></textarea><i class ="fa fa-paper-plane" onclick="sendText()"></i>
 </div>
 </div>
 <script>
