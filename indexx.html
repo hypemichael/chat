@@ -82,7 +82,7 @@ color : green;
 </head>
 <body>
 <div class="header">
-<p id="header-text"> Simple Chat powered by Michael O.A</p>
+<p id="header-text"> Simple Chat powered by Michael O.A</p> &nbsp; Today<span id="date"> </span> &nbsp; <span id="number"></span>
 </div>
 
 <div class="row" id="message">
@@ -93,9 +93,35 @@ color : green;
 <div class="row" id="input-space">
 <div class ="col-12" id="input-space-div">
 <i class ="fa fa-heart"></i> <i class="fa fa-frown-o"></i> <i class= "fa fa-smile-o"></i> <i class= "fa fa-meh-o"></i> <i class= "fa fa-thumbs-o-up"></i><br>
-<textarea></textarea><i class ="fa fa-paper-plane"></i>
+<textarea id="textarea"></textarea><i class ="fa fa-paper-plane"></i>
 </div>
 </div>
-
+<script>
+var socket = io.connect();
+document.getElementById("date").innerHTML = new Date();
+socket.on("users",function(data){
+document.getElementById("number").innerHTML = data + " " + "Users in Lobby";
+})
+socket.on("data",function(data,Guest){
+var para = document.createElement("p");
+para.appendChild(document.createTextNode("Guest"+Guest + ":" +data));
+document.getElementById("message-div").appendChild(para);
+para.className = "ani";
+para.style.color = "red";
+document.getElementById("message-div").scrollTop+=300;
+})
+function sendText(){
+var val =document.getElementById("textarea").value;
+var data = val;
+socket.emit("data",data);
+var para = document.createElement("p");
+para.appendChild(document.createTextNode("You" + ":" + data));
+para.className = "ani";
+document.getElementById("message-div").appendChild(para);
+document.getElementById("textarea").value = "";
+para.style.color = "blue";
+document.getElementById("message-div").scrollTop+=300;
+}
+</script>
 </body>
 </html>
